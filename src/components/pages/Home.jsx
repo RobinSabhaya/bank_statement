@@ -19,6 +19,39 @@ const Home = () => {
     speed: 2000,
     autoplaySpeed: 2000,
     cssEase: "linear",
+    variableWidth: true,
+    responsive: [
+      {
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 2.5,
+          slidesToScroll: 2,
+        },
+      },
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1.7,
+          slidesToScroll: 1,
+          arrows: false,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1.4,
+          slidesToScroll: 1,
+          arrows: false,
+        },
+      },
+    ],
   };
   return (
     <>
@@ -155,21 +188,7 @@ const Home = () => {
       </div>
       {/* React slick logo slider */}
       <div className="flex flex-col gap-4">
-        <Slider className="slider-container" {...settings}>
-          {images.map((ele, i) => {
-            return (
-              <>
-                <div key={i}>
-                  <div className="bg-[#98D2E5] p-3 border-2 rounded-2xl flex justify-center items-center flex-col m-2 w-full md:w-full h-[100px] md:h-[130px] gap-3">
-                    <img src={ele.img} alt="logo" height={50} width={50} />
-                    <p className="text-white font-bold">{ele.name}</p>
-                  </div>
-                </div>
-              </>
-            );
-          })}
-        </Slider>
-        <Slider className="slider-container" {...settings}>
+        <Slider className="slider-container w-[98%]" {...settings}>
           {images.map((ele, i) => {
             return (
               <>
@@ -183,7 +202,21 @@ const Home = () => {
             );
           })}
         </Slider>
-        <Slider className="slider-container" {...settings}>
+        <Slider className="slider-container w-[98%]" {...settings}>
+          {images.map((ele, i) => {
+            return (
+              <>
+                <div key={i}>
+                  <div className="bg-[#98D2E5] p-3 border-2 rounded-2xl flex justify-center items-center flex-col m-5 w-[200px] h-[100px] gap-3">
+                    <img src={ele.img} alt="logo" height={50} width={50} />
+                    <p className="text-white font-bold">{ele.name}</p>
+                  </div>
+                </div>
+              </>
+            );
+          })}
+        </Slider>
+        <Slider className="slider-container w-[98%]" {...settings}>
           {images.map((ele, i) => {
             return (
               <>
