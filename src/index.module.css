@@ -1,0 +1,18 @@
+.container {
+  width: 100%;
+  overflow: hidden;
+}
+
+.logosSlide {
+  display: flex;
+  animation: slide infinite 10s normal;
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
