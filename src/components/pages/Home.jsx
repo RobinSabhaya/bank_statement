@@ -4,6 +4,7 @@ import CircularProgressbar from "../common/CircleProgressBar";
 import Shield from "../../assets/shield.svg";
 import Accurate from "../../assets/accurate.svg";
 import Bank from "../../assets/bank.svg";
+import getInTouch from "../../assets/get_in_touch.svg";
 // Import css files
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -57,16 +58,16 @@ const Home = () => {
     <>
       <div className="mt-[100px] flex justify-center items-center w-full flex-col">
         <Header />
-        <h3 className="text-[#389BBC] font-bold text-[30px]">
+        <h3 className="text-[#389BBC] font-bold text-[30px] text-center">
           Instantly Convert Bank Statements
         </h3>
-        <h5 className="text-[#389BBC] font-semibold mb-5">
+        <h5 className="text-[#389BBC] font-semibold mb-5 text-center">
           Free online converter powered by AI to convert your PDF bank
           statements into structured data formats like Excel, CSV, or JSON.
         </h5>
       </div>
-      <div className="bg-[#DDF2F9] dark:bg-gray-900 top-0 start-0 border-2 border-[#389BBC] rounded-3xl  mx-20 mt-3 p-8">
-        <div className="flex justify-between items-start flex-row w-full flex-wrap md:justify-center sm:justify-center">
+      <div className="bg-[#DDF2F9] dark:bg-gray-900 top-0 start-0 border-2 border-[#389BBC] rounded-3xl mx-2 md:mx-20 lg:mx-20 mt-3 p-8">
+        <div className="flex justify-center items-start flex-row w-full 2xl:justify-between flex-wrap">
           <div className="flex justify-center items-center flex-col">
             <label
               htmlFor="dropzone-file"
@@ -90,10 +91,11 @@ const Home = () => {
                 </svg>
                 <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
                   <span className="font-semibold">Upload Bank Statements</span>
-                  or drag and drop
+                  {""} or drag and drop
                 </p>
-                <p className="text-xs text-gray-500 dark:text-gray-400">
-                  SVG, PNG, JPG or GIF (MAX. 800x400px)
+                <p className="text-xs text-gray-500 dark:text-gray-400 text-center">
+                  We Accept Image And Pdf With Size Up To 10mb <br />
+                  (For Pdf, Only The First 3 Pages Will Be Converted)
                 </p>
               </div>
               <input id="dropzone-file" type="file" className="hidden" />
@@ -114,33 +116,27 @@ const Home = () => {
             </button>
             <p className="text-[#389BBC]">Your All Files Secure And Safe</p>
           </div>
-          <div className="w-[70%]">
+          <div className="w-full md:w-[84%] lg:w-[84%] 2xl:w-[70%] my-5">
             <div className="flex justify-center items-center flex-col">
-              <div className="flex justify-start items-center mb-10 md:flex-col sm:flex-col lg:flex-row">
-                <div className="w-[20vw] h-[25vh]">
+              <div className="flex justify-start items-center mb-10 gap-2">
+                <div className="w-[30vw] h-[25vh] md:w-[20vw]">
                   <CircularProgressbar percentage={25}></CircularProgressbar>
-                  <p className="text-center m-4 md:mt-[-10px] sm:mt-[-10px] text-[#389BBC] font-bold lg:mt-[5px]">
-                    CSV
-                  </p>
+                  <p className="text-center text-[#389BBC] font-bold">CSV</p>
                 </div>
-                <div className="w-[20vw] h-[25vh]">
+                <div className="w-[30vw] h-[25vh] md:w-[20vw]">
                   <CircularProgressbar percentage={50}></CircularProgressbar>
-                  <p className="text-center m-4 md:mt-[-10px] sm:mt-[-10px] text-[#389BBC] font-bold lg:mt-[5px]">
-                    EXCEL
-                  </p>
+                  <p className="text-center text-[#389BBC] font-bold">EXCEL</p>
                 </div>
-                <div className="w-[20vw] h-[25vh]">
+                <div className="w-[30vw] h-[25vh] md:w-[20vw]">
                   <CircularProgressbar percentage={75}></CircularProgressbar>
-                  <p className="text-center m-4 md:mt-[-10px] sm:mt-[-10px] text-[#389BBC] font-bold lg:mt-[5px]">
-                    JSON
-                  </p>
+                  <p className="text-center text-[#389BBC] font-bold ">JSON</p>
                 </div>
               </div>
               <hr className="h-px mb-5 mt-8 bg-[#98D2E5] border-0 w-[95%]" />
               <p className="font-bold text-[#389BBC] text-center text-xl mb-8">
                 How To Convert Bank Statement To Excel (XLS) Or CSV
               </p>
-              <div className="flex justify-center items-start flex-col w-[88%] md:w-full sm:w-full gap-2">
+              <div className="flex justify-center items-start flex-col w-full gap-2">
                 <div className="flex justify-start items-start flex-row gap-3">
                   <ol className="list-decimal">
                     <li className="text-[#389BBC] font-semibold text-wrap md:text-left sm:text-left li-list m-3">
@@ -160,8 +156,8 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div className="flex justify-center items-center flex-row lg:justify-between lg:items-center lg:flex-row gap-3 lg:w-[90%] m-20 md:flex-col sm:flex-col">
-        <div className="flex justify-center items-center flex-col w-[33%] max-[320px]:w-full">
+      <div className="flex justify-center items-center flex-col w-full lg:flex-row gap-5 my-5">
+        <div className="flex justify-center items-center flex-col lg:w-[33%] w-full">
           <img src={Shield} alt="Shield" />
           <p className="text-[#389BBC] font-bold text-xl m-3">Secure</p>
           <p className="text-[#389BBC] font-semibold w-[75%] text-center mb-3">
@@ -169,7 +165,7 @@ const Home = () => {
             When Handling Your Files.
           </p>
         </div>
-        <div className="flex justify-center items-center flex-col w-[33%]">
+        <div className="flex justify-center items-center flex-col lg:w-[33%] w-full">
           <img src={Accurate} alt="Accurate" />
           <p className="text-[#389BBC] font-bold text-xl m-3">Accurate</p>
           <p className="text-[#389BBC] font-semibold  w-[75%] text-center mb-3">
@@ -177,7 +173,7 @@ const Home = () => {
             Convert To Your Expectations, Email Us And We'll Fix It.
           </p>
         </div>
-        <div className="flex justify-center items-center flex-col w-[33%]">
+        <div className="flex justify-center items-center flex-col lg:w-[33%] w-full">
           <img src={Bank} alt="Bank" />
           <p className="text-[#389BBC] font-bold text-xl m-3">Institutional</p>
           <p className="text-[#389BBC] font-semibold  w-[75%] text-center mb-3">
@@ -320,6 +316,50 @@ const Home = () => {
             </div>
           </div>
         </div>
+      </section>
+      <section className="flex justify-center items-center flex-row w-full">
+        <div className="border border-[#389BBC] w-full rounded-xl  lg:w-[70%] md:w-[70%] sm:w-[70%] 2xl:w-[70%] p-3">
+          <h5 className="text-center text-[#389BBC] text-xl m-2">
+            GET IN TOUCH
+          </h5>
+          <h1 className="text-center text-[#389BBC] text-3xl font-extrabold m-2">
+            Have More Questions?
+          </h1>
+          <h1 className="text-left text-[#389BBC] text-3xl font-extrabold mx-8">
+            Send In A Query
+          </h1>
+          <div className="grid grid-cols-1 mx-8 lg:grid-cols-2 my-3">
+            <div className="flex justify-center items-center flex-col gap-y-5">
+              <input
+                type="email"
+                name="email"
+                id="email"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                placeholder="your work email*"
+                required
+              />
+              <textarea
+                id="message"
+                rows="4"
+                class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300"
+                placeholder="how we can help you?*"
+              ></textarea>
+              <div className="flex gap-5 mx-1 my-5">
+                <button className="border border-[#389BBC] rounded-lg bg-[#389BBC] text-white p-2 px-12">
+                  Any Attachment
+                </button>
+                <button className="border border-[#389BBC] rounded-lg bg-[#389BBC] text-white p-2 px-12">
+                  Send Query
+                </button>
+              </div>
+            </div>
+            <img src={getInTouch} alt="Email" />
+          </div>
+        </div>
+      </section>
+      <hr class="h-px mt-5 bg-[#389BBC] border-0 w-full" />
+      <section className="text-center text-[#389BBC] m-3">
+        Copyright © 2024 Bank Statement Ltd.
       </section>
     </>
   );

@@ -6,7 +6,7 @@ const Header = () => {
   return (
     <>
       <nav
-        className=" dark:bg-gray-900 fixed w-[calc(100vw-10vw)] z-20 top-0 start-0 border-2 border-[#389BBC] rounded-3xl dark:border-gray-600 mx-20 mt-3"
+        className=" dark:bg-gray-900 fixed 2xl:w-[calc(100vw-10vw)] z-20 top-0 start-0 border-2 border-[#389BBC] rounded-3xl dark:border-gray-600 mx-20 mt-3"
         style={{
           backdropFilter: "blur(8px)",
           boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
@@ -25,13 +25,13 @@ const Header = () => {
           <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
             <NavLink
               to={"/login-signup"}
-              className="block py-2 px-3 text-[#389BBC] bg-blue-700 rounded md:bg-transparent md:text-[#389BBC] md:p-0 md:dark:text-[#389BBC] mx-3"
+              className="block py-2 px-3 text-[#389BBC] md:p-0 mx-3"
             >
               Login
             </NavLink>
             <NavLink
               to={"/login-signup"}
-              className="block py-2 px-3 text-[#389BBC] bg-blue-700 rounded md:bg-transparent md:text-[#389BBC] md:p-0 md:dark:text-[#389BBC] mx-3"
+              className="block py-2 px-3 text-[#389BBC] md:p-0 mx-3"
             >
               Sign Up
             </NavLink>
