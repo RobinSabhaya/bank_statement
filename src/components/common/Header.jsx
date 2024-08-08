@@ -6,7 +6,7 @@ const Header = () => {
   return (
     <>
       <nav
-        className=" dark:bg-gray-900 fixed 2xl:w-[calc(100vw-10vw)] z-20 top-0 start-0 border-2 border-[#389BBC] rounded-3xl dark:border-gray-600 mx-20 mt-3"
+        className="dark:bg-gray-900 w-[calc(100vw-12vw)] border-2 border-[#389BBC] rounded-3xl dark:border-gray-600 mx-20 max-[540px]:m-auto max-[540px]:mx-6 my-3"
         style={{
           backdropFilter: "blur(8px)",
           boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
@@ -23,18 +23,6 @@ const Header = () => {
             </span>
           </a>
           <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-            <NavLink
-              to={"/login-signup"}
-              className="block py-2 px-3 text-[#389BBC] md:p-0 mx-3"
-            >
-              Login
-            </NavLink>
-            <NavLink
-              to={"/login-signup"}
-              className="block py-2 px-3 text-[#389BBC] md:p-0 mx-3"
-            >
-              Sign Up
-            </NavLink>
             <button
               data-collapse-toggle="navbar-sticky"
               type="button"
@@ -64,33 +52,31 @@ const Header = () => {
             className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
             id="navbar-sticky"
           >
-            <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0">
-              <li>
-                <a
-                  href="/"
-                  className="block py-2 px-3 text-[#389BBC]  rounded md:bg-transparent md:text-[#389BBC] md:p-0 md:dark:text-[#389BBC]"
-                >
-                  Home
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#pricing"
-                  className="block py-2 px-3 text-[#389BBC]  rounded md:bg-transparent md:text-[#389BBC] md:p-0 md:dark:text-[#389BBC]"
-                  aria-current="page"
+            <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 gap-3">
+              <div>
+                <NavLink
+                  to={"pricing"}
+                  className="block py-1 px-2 text-[#389BBC] bg-[#98D2E5] 2xl:bg-transparent rounded-xl md:text-[#389BBC] md:p-0 md:dark:text-[#389BBC] xl:bg-transparent lg:bg-transparent md:bg-transparent text-center hover:bg-[#389BBC] hover:text-white hover:px-2 hover:py-1 transition-all"
                 >
                   Pricing
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="block py-2 px-3 text-[#389BBC]  rounded md:bg-transparent md:text-[#389BBC] md:p-0 md:dark:text-[#389BBC]"
-                  aria-current="page"
+                </NavLink>
+              </div>
+              <div>
+                <NavLink
+                  to={"/login-signup"}
+                  className="block py-1 px-2 text-[#389BBC] bg-[#98D2E5] 2xl:bg-transparent rounded-xl md:text-[#389BBC] md:p-0 md:dark:text-[#389BBC] xl:bg-transparent lg:bg-transparent md:bg-transparent text-center hover:bg-[#389BBC] hover:text-white hover:px-2 hover:py-1 transition-all"
                 >
-                  Downloads
-                </a>
-              </li>
+                  Login
+                </NavLink>
+              </div>
+              <div>
+                <NavLink
+                  to={"/login-signup"}
+                  className="block py-1 px-2 text-[#389BBC] bg-[#98D2E5] 2xl:bg-transparent rounded-xl md:text-[#389BBC] md:p-0 md:dark:text-[#389BBC] xl:bg-transparent lg:bg-transparent md:bg-transparent text-center hover:bg-[#389BBC] hover:text-white hover:px-2 hover:py-1 transition-all"
+                >
+                  Sign Up
+                </NavLink>
+              </div>
             </ul>
           </div>
         </div>

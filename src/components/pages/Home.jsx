@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import Header from "../common/Header";
 import CircularProgressbar from "../common/CircleProgressBar";
 import Shield from "../../assets/shield.svg";
@@ -8,8 +8,8 @@ import getInTouch from "../../assets/get_in_touch.svg";
 // Import css files
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { images } from "../helpers/constant.helper";
 import Slider from "react-slick";
+import { images } from "../helpers/constant.helper";
 
 const Home = () => {
   const settings = {
@@ -21,6 +21,7 @@ const Home = () => {
     autoplaySpeed: 2000,
     cssEase: "linear",
     variableWidth: true,
+    dir: "rtl",
     responsive: [
       {
         breakpoint: 1200,
@@ -54,9 +55,21 @@ const Home = () => {
       },
     ],
   };
+  const hiddenFileInput = useRef(null);
+
+  // Programatically click the hidden file input element
+  // when the Button component is clicked
+  const handleClick = (event) => {
+    hiddenFileInput.current.click();
+  };
+  const handleChange = (event) => {
+    const fileUploaded = event.target.files[0];
+    // handleFile(fileUploaded);
+  };
+
   return (
     <>
-      <div className="mt-[100px] flex justify-center items-center w-full flex-col">
+      <div className="flex justify-center items-center w-full flex-col">
         <Header />
         <h3 className="text-[#389BBC] font-bold text-[30px] text-center">
           Instantly Convert Bank Statements
@@ -184,7 +197,7 @@ const Home = () => {
       </div>
       {/* React slick logo slider */}
       <div className="flex flex-col gap-4">
-        <Slider className="slider-container w-[98%]" {...settings}>
+        <Slider className="slider-container w-[98%] ltr" {...settings}>
           {images.map((ele, i) => {
             return (
               <>
@@ -198,11 +211,11 @@ const Home = () => {
             );
           })}
         </Slider>
-        <Slider className="slider-container w-[98%]" {...settings}>
+        <Slider className="slider-container w-[98%] rtl" {...settings}>
           {images.map((ele, i) => {
             return (
               <>
-                <div key={i}>
+                <div key={i} className="transform rotate-180">
                   <div className="bg-[#98D2E5] p-3 border-2 rounded-2xl flex justify-center items-center flex-col m-5 w-[200px] h-[100px] gap-3">
                     <img src={ele.img} alt="logo" height={50} width={50} />
                     <p className="text-white font-bold">{ele.name}</p>
@@ -212,7 +225,7 @@ const Home = () => {
             );
           })}
         </Slider>
-        <Slider className="slider-container w-[98%]" {...settings}>
+        <Slider className="slider-container w-[98%] ltr" {...settings}>
           {images.map((ele, i) => {
             return (
               <>
@@ -231,87 +244,75 @@ const Home = () => {
       <section className="bg-white" id="pricing">
         <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
           <div className="space-y-8 lg:grid lg:grid-cols-3 sm:gap-6 xl:gap-10 lg:space-y-0">
-            <div className="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-2xl border border-[#389BBC] shadow xl:p-6 ">
-              <h3 className="text-4xl font-semibold text-left text-[#389BBC]">
-                Essentials
-              </h3>
+            <div className="flex flex-col p-6 mx-auto max-w-lg text-center bg-white rounded-2xl border border-[#389BBC] shadow xl:p-6 text-[#389BBC] hover:bg-[#389BBC] hover:text-white card transition-all">
+              <h3 className="text-4xl font-semibold text-left ">Essentials</h3>
               <div className="flex justify-start items-baseline my-5">
-                <span className="mr-2 text-3xl font-bold  text-[#389BBC]">
-                  ₹ 199
-                </span>
+                <span className="mr-2 text-3xl font-bold">₹ 199</span>
                 <span className="text-[#389BBC]">/ Per Month</span>
               </div>
-              <p className="text-left text-[#389BBC]">
+              <p className="text-left">
                 Tailored for individuals plus little crews. Converts up to 500
                 pages changed each month.
               </p>
-              <button className="border border-[#389BBC] rounded-md bg-[#389BBC] text-white px-5 py-1 my-7 w-fit text-sm">
+              <button className="border border-[#389BBC] rounded-md bg-[#389BBC] text-white px-5 py-1 my-7 w-fit text-sm btn">
                 Get Started
               </button>
               <ul className="space-y-4 text-left list-disc mx-8">
-                <li className="text-[#389BBC]">Clean data formatting</li>
-                <li className="text-[#389BBC]">Bulk processing</li>
-                <li className="text-[#389BBC]">Multiple export options</li>
-                <li className="text-[#389BBC]">Intuitive interface</li>
-                <li className="text-[#389BBC]">One-click download</li>
-                <li className="text-[#389BBC]">Global banks supported</li>
-                <li className="text-[#389BBC]">Secure encryption</li>
+                <li>Clean data formatting</li>
+                <li>Bulk processing</li>
+                <li>Multiple export options</li>
+                <li>Intuitive interface</li>
+                <li>One-click download</li>
+                <li>Global banks supported</li>
+                <li>Secure encryption</li>
               </ul>
             </div>
-            <div className="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-2xl border border-[#389BBC] shadow xl:p-6 ">
-              <h3 className="text-4xl font-semibold text-left text-[#389BBC]">
-                Business
-              </h3>
+            <div className="flex flex-col p-6 mx-auto max-w-lg text-center text-[#389BBC] bg-white rounded-2xl border border-[#389BBC] shadow xl:p-6 hover:bg-[#389BBC] hover:text-white card transition-all">
+              <h3 className="text-4xl font-semibold text-left">Business</h3>
               <div className="flex justify-start items-baseline my-5">
-                <span className="mr-2 text-3xl font-bold  text-[#389BBC]">
-                  ₹ 499
-                </span>
-                <span className="text-[#389BBC]">/ Per Month</span>
+                <span className="mr-2 text-3xl font-bold">₹ 499</span>
+                <span>/ Per Month</span>
               </div>
-              <p className="text-left text-[#389BBC]">
+              <p className="text-left">
                 Perfect for entrepreneurs, small teams and small biz. 1000 page
                 monthly allowance.
               </p>
-              <button className="border border-[#389BBC] rounded-md bg-[#389BBC] text-white px-5 py-1 my-7 w-fit text-sm mt-[49px]">
+              <button className="border border-[#389BBC] rounded-md bg-[#389BBC] text-white px-5 py-1 my-7 w-fit text-sm mt-[49px] btn">
                 Get Started
               </button>
               <ul className="space-y-4 text-left list-disc mx-8">
-                <li className="text-[#389BBC]">Clean data formatting</li>
-                <li className="text-[#389BBC]">Bulk processing</li>
-                <li className="text-[#389BBC]">Multiple export options</li>
-                <li className="text-[#389BBC]">Intuitive interface</li>
-                <li className="text-[#389BBC]">One-click download</li>
-                <li className="text-[#389BBC]">Global banks supported</li>
-                <li className="text-[#389BBC]">Secure encryption</li>
-                <li className="text-[#389BBC]">AI Copilot</li>
+                <li>Clean data formatting</li>
+                <li>Bulk processing</li>
+                <li>Multiple export options</li>
+                <li>Intuitive interface</li>
+                <li>One-click download</li>
+                <li>Global banks supported</li>
+                <li>Secure encryption</li>
+                <li>AI Copilot</li>
               </ul>
             </div>
-            <div className="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-2xl border border-[#389BBC] shadow xl:p-6 ">
-              <h3 className="text-4xl font-semibold text-left text-[#389BBC]">
-                Advanced
-              </h3>
+            <div className="flex flex-col p-6 mx-auto max-w-lg text-center text-[#389BBC] bg-white rounded-2xl border border-[#389BBC] shadow xl:p-6 hover:bg-[#389BBC] hover:text-white card transition-all">
+              <h3 className="text-4xl font-semibold text-left">Advanced</h3>
               <div className="flex justify-start items-baseline my-5">
-                <span className="mr-2 text-3xl font-bold  text-[#389BBC]">
-                  ₹ 999
-                </span>
-                <span className="text-[#389BBC]">/ Per Month</span>
+                <span className="mr-2 text-3xl font-bold">₹ 999</span>
+                <span>/ Per Month</span>
               </div>
-              <p className="text-left text-[#389BBC]">
+              <p className="text-left">
                 Perfect for expansive teams and corporations. Up to 3000 pages
                 converted each month.
               </p>
-              <button className="border mt-[49px] border-[#389BBC] rounded-md bg-[#389BBC] text-white px-5 py-1 my-7 w-fit text-sm">
+              <button className="border mt-[49px] border-[#389BBC] rounded-md bg-[#389BBC] text-white px-5 py-1 my-7 w-fit text-sm btn">
                 Get Started
               </button>
               <ul className="space-y-4 text-left list-disc mx-8">
-                <li className="text-[#389BBC]">Clean data formatting</li>
-                <li className="text-[#389BBC]">Bulk processing</li>
-                <li className="text-[#389BBC]">Multiple export options</li>
-                <li className="text-[#389BBC]">Intuitive interface</li>
-                <li className="text-[#389BBC]">One-click download</li>
-                <li className="text-[#389BBC]">Global banks supported</li>
-                <li className="text-[#389BBC]">Secure encryption</li>
-                <li className="text-[#389BBC]">AI Copilot</li>
+                <li>Clean data formatting</li>
+                <li>Bulk processing</li>
+                <li>Multiple export options</li>
+                <li>Intuitive interface</li>
+                <li>One-click download</li>
+                <li>Global banks supported</li>
+                <li>Secure encryption</li>
+                <li>AI Copilot</li>
               </ul>
             </div>
           </div>
@@ -325,7 +326,7 @@ const Home = () => {
           <h1 className="text-center text-[#389BBC] text-3xl font-extrabold m-2">
             Have More Questions?
           </h1>
-          <h1 className="text-left text-[#389BBC] text-3xl font-extrabold mx-8">
+          <h1 className="2xl:text-left xl:text-left text-[#389BBC] text-3xl font-extrabold mx-8 text-center">
             Send In A Query
           </h1>
           <div className="grid grid-cols-1 mx-8 lg:grid-cols-2 my-3">
@@ -334,7 +335,7 @@ const Home = () => {
                 type="email"
                 name="email"
                 id="email"
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
                 placeholder="your work email*"
                 required
               />
@@ -345,19 +346,32 @@ const Home = () => {
                 placeholder="how we can help you?*"
               ></textarea>
               <div className="flex gap-5 mx-1 my-5">
-                <button className="border border-[#389BBC] rounded-lg bg-[#389BBC] text-white p-2 px-12">
+                <button
+                  className="border border-[#389BBC] rounded-lg bg-[#389BBC] text-white p-2 px-12"
+                  onClick={handleClick}
+                >
                   Any Attachment
+                  <input
+                    type="file"
+                    onChange={handleChange}
+                    ref={hiddenFileInput}
+                    style={{ display: "none" }} // Make the file input element invisible
+                  />
                 </button>
                 <button className="border border-[#389BBC] rounded-lg bg-[#389BBC] text-white p-2 px-12">
                   Send Query
                 </button>
               </div>
             </div>
-            <img src={getInTouch} alt="Email" />
+            <img
+              src={getInTouch}
+              alt="Email"
+              className="sm:row-start-1 sm:row-end-1 md:row-start-1 md:row-end-1  lg:row-span-1 2xl:row-span-1"
+            />
           </div>
         </div>
       </section>
-      <hr class="h-px mt-5 bg-[#389BBC] border-0 w-full" />
+      <hr class="h-px mt-2 bg-[#389BBC] border-0 w-full" />
       <section className="text-center text-[#389BBC] m-3">
         Copyright © 2024 Bank Statement Ltd.
       </section>
