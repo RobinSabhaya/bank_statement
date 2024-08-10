@@ -8,8 +8,8 @@ const ChangePassword = () => {
   return (
     <>
       <div className="flex justify-center items-center flex-row flex-wrap w-full mt-4">
-        <div className="flex justify-center items-center flex-col-reverse 2xl:w-[70%] border-2 rounded-xl border-[#389BBC] 2xl:flex-row h-screen">
-          <div className="w-full 2xl:w-[calc(100%-50%)] ">
+        <div className="flex justify-center items-center flex-col-reverse md:w-[60%] sm:w-[70%] border-2 rounded-xl border-[#389BBC] 2xl:flex-row h-auto w-full py-10 lg:justify-between lg:flex-row m-3 lg:w-[80%]">
+          <div className="w-full 2xl:w-[calc(100%-50%)] xl:w-[calc(100%-50%)]">
             <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-[calc(100vh-10vh)] lg:py-0">
               <div
                 className={`w-full border rounded-xl border-[#389BBC] ${
@@ -48,7 +48,7 @@ const ChangePassword = () => {
                         type="email"
                         name="email"
                         id="email"
-                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        className="border border-[#389BBC] text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:placeholder-gray-400 dark:text-white"
                         placeholder="name@company.com"
                         required
                       />
@@ -67,7 +67,7 @@ const ChangePassword = () => {
                             name="password"
                             id="password"
                             placeholder="••••••••"
-                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            className="border border-[#389BBC] text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:placeholder-gray-400 dark:text-white "
                             required
                           />
                         </div>
@@ -83,7 +83,7 @@ const ChangePassword = () => {
                             name="password"
                             id="password"
                             placeholder="••••••••"
-                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            className="border border-[#389BBC] text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700  dark:placeholder-gray-400 dark:text-white "
                             required
                           />
                         </div>

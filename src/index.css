@@ -122,8 +122,8 @@ ol li:before {
   25% {
     z-index: 1;
     background: #eb4335;
-    width: 800px;
-    height: 800px;
+    width: 1000px;
+    height: 1000px;
     opacity: 1;
   }
 
@@ -138,24 +138,24 @@ ol li:before {
   50% {
     z-index: 3;
     background: #34a853;
-    width: 800px;
-    height: 800px;
+    width: 1000px;
+    height: 1000px;
     opacity: 1;
   }
 
   70% {
     z-index: 3;
     background: #34a853;
-    width: 800px;
-    height: 800px;
+    width: 1000px;
+    height: 1000px;
     opacity: 1;
   }
 
   100% {
     z-index: 3;
     background: #34a853;
-    width: 800px;
-    height: 800px;
+    width: 1000px;
+    height: 1000px;
     opacity: 1;
   }
 }

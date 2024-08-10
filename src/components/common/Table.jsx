@@ -111,7 +111,7 @@ const Table = () => {
           </tbody>
         </table>
       </div>
-      <hr class="h-px mt-5 bg-[#389BBC] border-0 w-full" />
+      <hr className="h-px mt-5 bg-[#389BBC] border-0 w-full" />
       <section className="text-center text-[#389BBC] m-3">
         Copyright © 2024 Bank Statement Ltd.
       </section>

@@ -5,8 +5,8 @@ import { NavLink } from "react-router-dom";
 const Header = () => {
   return (
     <>
-      <nav
-        className="dark:bg-gray-900 w-[calc(100vw-12vw)] border-2 border-[#389BBC] rounded-3xl dark:border-gray-600 mx-20 max-[540px]:m-auto max-[540px]:mx-6 my-3"
+      <div
+        className="dark:bg-gray-900 w-[calc(100vw-10vw)] border-2 border-[#389BBC] rounded-3xl dark:border-gray-600 mx-20 max-[540px]:m-auto max-[540px]:mx-6 my-3"
         style={{
           backdropFilter: "blur(8px)",
           boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
@@ -22,7 +22,6 @@ const Header = () => {
               Bank Statement
             </span>
           </a>
-          <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
             <button
               data-collapse-toggle="navbar-sticky"
               type="button"
@@ -47,7 +46,6 @@ const Header = () => {
                 />
               </svg>
             </button>
-          </div>
           <div
             className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
             id="navbar-sticky"
@@ -77,10 +75,26 @@ const Header = () => {
                   Sign Up
                 </NavLink>
               </div>
+              <div>
+                <NavLink
+                  to={"/reset-password"}
+                  className="block py-1 px-2 text-[#389BBC] bg-[#98D2E5] 2xl:bg-transparent rounded-xl md:text-[#389BBC] md:p-0 md:dark:text-[#389BBC] xl:bg-transparent lg:bg-transparent md:bg-transparent text-center hover:bg-[#389BBC] hover:text-white hover:px-2 hover:py-1 transition-all"
+                >
+                  Reset Password
+                </NavLink>
+              </div>
+              <div>
+                <NavLink
+                  to={"/new-password"}
+                  className="block py-1 px-2 text-[#389BBC] bg-[#98D2E5] 2xl:bg-transparent rounded-xl md:text-[#389BBC] md:p-0 md:dark:text-[#389BBC] xl:bg-transparent lg:bg-transparent md:bg-transparent text-center hover:bg-[#389BBC] hover:text-white hover:px-2 hover:py-1 transition-all"
+                >
+                  New Password
+                </NavLink>
+              </div>
             </ul>
           </div>
         </div>
-      </nav>
+      </div>
     </>
   );
 };

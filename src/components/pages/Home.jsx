@@ -111,7 +111,13 @@ const Home = () => {
                   (For Pdf, Only The First 3 Pages Will Be Converted)
                 </p>
               </div>
-              <input id="dropzone-file" type="file" className="hidden" />
+              <input
+                id="dropzone-file"
+                type="file"
+                className="hidden"
+                max={5}
+                multiple
+              />
             </label>
             <div className="flex justify-center items-center flex-row gap-3 flex-wrap">
               <button className="border border-[#389BBC] rounded-lg text-[#389BBC] px-10 py-3">
@@ -129,18 +135,18 @@ const Home = () => {
             </button>
             <p className="text-[#389BBC]">Your All Files Secure And Safe</p>
           </div>
-          <div className="w-full md:w-[84%] lg:w-[84%] 2xl:w-[70%] my-5">
+          <div className="w-full md:w-[84%] lg:w-[84%] xl:w-[66%] 2xl:w-[70%] my-5">
             <div className="flex justify-center items-center flex-col">
               <div className="flex justify-start items-center mb-10 gap-2">
-                <div className="w-[30vw] h-[25vh] md:w-[20vw]">
+                <div className="w-[28vw] h-[23vh] md:w-[20vw]">
                   <CircularProgressbar percentage={25}></CircularProgressbar>
                   <p className="text-center text-[#389BBC] font-bold">CSV</p>
                 </div>
-                <div className="w-[30vw] h-[25vh] md:w-[20vw]">
+                <div className="w-[28vw] h-[23vh] md:w-[20vw]">
                   <CircularProgressbar percentage={50}></CircularProgressbar>
                   <p className="text-center text-[#389BBC] font-bold">EXCEL</p>
                 </div>
-                <div className="w-[30vw] h-[25vh] md:w-[20vw]">
+                <div className="w-[28vw] h-[23vh] md:w-[20vw]">
                   <CircularProgressbar percentage={75}></CircularProgressbar>
                   <p className="text-center text-[#389BBC] font-bold ">JSON</p>
                 </div>
@@ -242,7 +248,7 @@ const Home = () => {
       </div>
       {/* Pricing */}
       <section className="bg-white" id="pricing">
-        <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
+        <div className="py-8 px-4 mx-auto max-w-[1436px] lg:py-16 lg:px-6">
           <div className="space-y-8 lg:grid lg:grid-cols-3 sm:gap-6 xl:gap-10 lg:space-y-0">
             <div className="flex flex-col p-6 mx-auto max-w-lg text-center bg-white rounded-2xl border border-[#389BBC] shadow xl:p-6 text-[#389BBC] hover:bg-[#389BBC] hover:text-white card transition-all">
               <h3 className="text-4xl font-semibold text-left ">Essentials</h3>
@@ -318,34 +324,34 @@ const Home = () => {
           </div>
         </div>
       </section>
-      <section className="flex justify-center items-center flex-row w-full">
-        <div className="border border-[#389BBC] w-full rounded-xl  lg:w-[70%] md:w-[70%] sm:w-[70%] 2xl:w-[70%] p-3">
+      <section className="flex justify-center items-center flex-row mb-20">
+        <div className="border border-[#389BBC] max-w-[1436px] rounded-xl p-3">
           <h5 className="text-center text-[#389BBC] text-xl m-2">
             GET IN TOUCH
           </h5>
           <h1 className="text-center text-[#389BBC] text-3xl font-extrabold m-2">
             Have More Questions?
           </h1>
-          <h1 className="2xl:text-left xl:text-left text-[#389BBC] text-3xl font-extrabold mx-8 text-center">
+          <h1 className="text-left text-[#389BBC] text-3xl font-extrabold mx-8 my-4">
             Send In A Query
           </h1>
           <div className="grid grid-cols-1 mx-8 lg:grid-cols-2 my-3">
-            <div className="flex justify-center items-center flex-col gap-y-5">
+            <div className="flex justify-start items-center flex-col gap-y-5">
               <input
                 type="email"
                 name="email"
                 id="email"
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
+                className="border border-[#389BBC] text-gray-900 text-sm rounded-lg block w-full p-2.5"
                 placeholder="your work email*"
                 required
               />
               <textarea
                 id="message"
-                rows="4"
-                class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300"
+                rows="12"
+                className="block p-2.5 w-full text-sm text-gray-900 rounded-lg border border-[#389BBC]"
                 placeholder="how we can help you?*"
               ></textarea>
-              <div className="flex gap-5 mx-1 my-5">
+              <div className="flex gap-5 mx-1 mt-5 w-full justify-start">
                 <button
                   className="border border-[#389BBC] rounded-lg bg-[#389BBC] text-white p-2 px-12"
                   onClick={handleClick}
@@ -355,7 +361,7 @@ const Home = () => {
                     type="file"
                     onChange={handleChange}
                     ref={hiddenFileInput}
-                    style={{ display: "none" }} // Make the file input element invisible
+                    style={{ display: "none" }}
                   />
                 </button>
                 <button className="border border-[#389BBC] rounded-lg bg-[#389BBC] text-white p-2 px-12">
@@ -366,12 +372,12 @@ const Home = () => {
             <img
               src={getInTouch}
               alt="Email"
-              className="sm:row-start-1 sm:row-end-1 md:row-start-1 md:row-end-1  lg:row-span-1 2xl:row-span-1"
+              className="sm:row-start-1 sm:row-end-1 md:row-start-1 md:row-end-1 lg:row-span-1 2xl:row-span-1"
             />
           </div>
         </div>
       </section>
-      <hr class="h-px mt-2 bg-[#389BBC] border-0 w-full" />
+      <hr className="h-px mt-2 bg-[#389BBC] border-0 w-full" />
       <section className="text-center text-[#389BBC] m-3">
         Copyright © 2024 Bank Statement Ltd.
       </section>

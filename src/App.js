@@ -4,6 +4,7 @@ import Form from "./components/auth/Form";
 import ChangePassword from "./components/auth/ChangePassword";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Table from "./components/common/Table";
+// import Test from "./components/Test";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route element={<Table></Table>} path="/user-list" />
         </Routes>
       </BrowserRouter>
+      {/* <Test></Test> */}
     </>
   );
 }
