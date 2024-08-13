@@ -75,7 +75,7 @@ const Header = () => {
                   Sign Up
                 </NavLink>
               </div>
-              <div>
+              {/* <div>
                 <NavLink
                   to={"/reset-password"}
                   className="block py-1 px-2 text-[#389BBC] bg-[#98D2E5] 2xl:bg-transparent rounded-xl md:text-[#389BBC] md:p-0 md:dark:text-[#389BBC] xl:bg-transparent lg:bg-transparent md:bg-transparent text-center hover:bg-[#389BBC] hover:text-white hover:px-2 hover:py-1 transition-all"
@@ -90,7 +90,7 @@ const Header = () => {
                 >
                   New Password
                 </NavLink>
-              </div>
+              </div> */}
             </ul>
           </div>
         </div>
