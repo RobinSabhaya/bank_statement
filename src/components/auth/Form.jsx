@@ -1,8 +1,93 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import auth from "../../assets/auth.svg";
+import { useGoogleLogin } from "@react-oauth/google";
+import axios from "axios";
+import apiRoutes from "../helpers/api.helper";
 
 const Form = () => {
   const [active, setActive] = useState(false);
+  const [user, setUser] = useState([]);
+  const [profile, setProfile] = useState([]);
+  const [userType, setUserType] = useState(null);
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+    userType: "",
+  });
+  const [response, setResponse] = useState(null);
+
+  const login = useGoogleLogin({
+    onSuccess: (codeResponse) => setUser(codeResponse),
+    onError: (error) => console.log("Login Failed:", error),
+  });
+
+  useEffect(() => {
+    if (user) {
+      axios
+        .get(
+          `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${user.access_token}`,
+          {
+            headers: {
+              Authorization: `Bearer ${user.access_token}`,
+              Accept: "application/json",
+            },
+          }
+        )
+        .then((res) => {
+          setProfile(res.data);
+        })
+        .catch((err) => console.log(err));
+    }
+  }, [user]);
+  console.log(profile);
+
+  /**
+   * Handle input
+   * @param {event} e
+   */
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  /**
+   * Submit the form
+   * @param {event} e
+   */
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (formData.userType != " ") {
+      // const response = await axios
+      //   .post(apiRoutes.REGISTER, formData, {
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //       withCredentials: false,
+      //     },
+      //   })
+      //   .catch((err) => {
+      //     console.log(err);
+      //   });
+      // console.log(response.data);
+      // setResponse(response.data);
+    } else {
+      // const response = await axios
+      //   .post(apiRoutes.LOGIN, formData, {
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //       withCredentials: false,
+      //     },
+      //   })
+      //   .catch((err) => {
+      //     console.log(err);
+      //   });
+      // console.log(response.data);
+      // setResponse(response.data);
+    }
+  };
+
   return (
     <>
       <div className="flex justify-center items-center flex-row flex-wrap w-full mt-4">
@@ -68,7 +153,10 @@ const Form = () => {
                       </p>
                     </>
                   )}
-                  <form className="space-y-4 md:space-y-6" action="#">
+                  <form
+                    className="space-y-4 md:space-y-6"
+                    onSubmit={handleSubmit}
+                  >
                     <div>
                       <label
                         htmlFor="email"
@@ -83,6 +171,8 @@ const Form = () => {
                         className="border border-[#389BBC] text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:placeholder-gray-400 dark:text-white"
                         placeholder="name@company.com"
                         required
+                        value={formData.email}
+                        onChange={handleChange}
                       />
                     </div>
                     <div>
@@ -98,18 +188,35 @@ const Form = () => {
                         id="password"
                         placeholder="••••••••"
                         className=" border border-[#389BBC] text-gray-900 text-sm rounded-lg  block w-full p-2.5 dark:bg-gray-700 dark:placeholder-gray-400 dark:text-white "
+                        value={formData.password}
+                        onChange={handleChange}
                         required
                       />
                       {active ? (
                         <>
                           <div className="flex justify-center items-center flex-row gap-3 m-4 flex-wrap 2xl:flex-nowrap xl:flex-nowrap">
-                            <button className="border border-[#389BBC] rounded-lg text-[#389BBC] px-7 py-3">
+                            <button
+                              className="border border-[#389BBC] rounded-lg text-[#389BBC] px-7 py-3"
+                              name="userType"
+                              onClick={handleChange}
+                              value={"Essentials"}
+                            >
                               Essentials
                             </button>
-                            <button className="border border-[#389BBC] rounded-lg text-[#389BBC] px-7 py-3">
+                            <button
+                              className="border border-[#389BBC] rounded-lg text-[#389BBC] px-7 py-3"
+                              name="userType"
+                              onClick={handleChange}
+                              value={"Business"}
+                            >
                               Business
                             </button>
-                            <button className="border border-[#389BBC] rounded-lg text-[#389BBC] px-7 py-3">
+                            <button
+                              className="border border-[#389BBC] rounded-lg text-[#389BBC] px-7 py-3"
+                              name="userType"
+                              onClick={handleChange}
+                              value={"Advanced"}
+                            >
                               Advanced
                             </button>
                           </div>
@@ -156,8 +263,19 @@ const Form = () => {
                             className="red"
                           ></path>
                         </svg>
-                        <span className="text text-[#389BBC] text-center m-auto block">
+                        <span
+                          className="text text-[#389BBC] text-center m-auto block"
+                          onClick={login}
+                        >
                           Login with Google
+                          {/* <GoogleLogin
+                            onSuccess={(credentialResponse) => {
+                              console.log(credentialResponse);
+                            }}
+                            onError={() => {
+                              console.log("Login Failed");
+                            }}
+                          /> */}
                         </span>
                       </button>
                     </div>

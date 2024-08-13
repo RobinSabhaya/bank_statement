@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef, useState } from "react";
 import Header from "../common/Header";
 import CircularProgressbar from "../common/CircleProgressBar";
 import Shield from "../../assets/shield.svg";
@@ -10,8 +10,27 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import { images } from "../helpers/constant.helper";
+import apiRoutes from "../helpers/api.helper";
+import axios from "axios";
 
 const Home = () => {
+  const [file, setFile] = useState(null);
+  const [fileType, setFileType] = useState(null);
+  const [response, setResponse] = useState(null);
+  const [queryForm, setQueryFormData] = useState({
+    email: "",
+    message: "",
+  });
+  const hiddenFileInput = useRef(null);
+
+  // when the Button component is clicked
+  const handleClick = (event) => {
+    hiddenFileInput.current.click();
+  };
+  const handleChange = (event) => {
+    const file = event.target.files[0];
+    setFile(file);
+  };
   const settings = {
     infinite: true,
     slidesToShow: 6,
@@ -55,17 +74,84 @@ const Home = () => {
       },
     ],
   };
-  const hiddenFileInput = useRef(null);
 
-  // Programatically click the hidden file input element
-  // when the Button component is clicked
-  const handleClick = (event) => {
-    hiddenFileInput.current.click();
+  /**
+   * Handle file changes
+   * @param {event} e
+   */
+  const handleFileChange = (e) => {
+    setFile(e.target.files[0]);
   };
-  const handleChange = (event) => {
-    const fileUploaded = event.target.files[0];
-    // handleFile(fileUploaded);
+
+  /**
+   * Handle file types
+   * @param {event} e
+   */
+  const handleFileType = (e) => {
+    setFileType(e.target.value);
   };
+
+  /**
+   * Upload a file
+   * @param {event} e
+   */
+  async function handleFileUpload(e) {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("output", fileType);
+    const response = await axios
+      .post(apiRoutes.CONVERT, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          withCredentials: false,
+        },
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    console.log(response.data);
+    setResponse(response.data);
+  }
+
+  /**
+   * Handle input
+   * @param {event} e
+   */
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setQueryFormData({
+      ...queryForm,
+      [name]: value,
+    });
+  };
+
+  /**
+   * send query form
+   * @param {event} e
+   */
+  async function handleForm(e) {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("email", queryForm.email);
+    formData.append("message", queryForm.message);
+    for (const pair of formData.entries()) {
+      console.log(pair[0], pair[1]);
+    }
+    // const response = await axios
+    //   .post(apiRoutes.QUERY_FORM, formData, {
+    //     headers: {
+    //       "Content-Type": "multipart/form-data",
+    //       withCredentials: false,
+    //     },
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
+    // console.log(response.data);
+    // setResponse(response.data);
+  }
 
   return (
     <>
@@ -117,20 +203,36 @@ const Home = () => {
                 className="hidden"
                 max={5}
                 multiple
+                onChange={handleFileChange}
               />
             </label>
             <div className="flex justify-center items-center flex-row gap-3 flex-wrap">
-              <button className="border border-[#389BBC] rounded-lg text-[#389BBC] px-10 py-3">
+              <button
+                className="border border-[#389BBC] rounded-lg text-[#389BBC] px-10 py-3"
+                onClick={handleFileType}
+                value={"csv"}
+              >
                 CSV
               </button>
-              <button className="border border-[#389BBC] rounded-lg text-[#389BBC] px-10 py-3">
+              <button
+                className="border border-[#389BBC] rounded-lg text-[#389BBC] px-10 py-3"
+                onClick={handleFileType}
+                value={"excel"}
+              >
                 Excel
               </button>
-              <button className="border border-[#389BBC] rounded-lg text-[#389BBC] px-10 py-3">
+              <button
+                className="border border-[#389BBC] rounded-lg text-[#389BBC] px-10 py-3"
+                onClick={handleFileType}
+                value={"json"}
+              >
                 Json
               </button>
             </div>
-            <button className="border border-[#389BBC] bg-[#389BBC] rounded-lg text-white px-10 py-3 m-5 w-[calc(100%-5%)]">
+            <button
+              className="border border-[#389BBC] bg-[#389BBC] rounded-lg text-white px-10 py-3 m-5 w-[calc(100%-5%)]"
+              onClick={handleFileUpload}
+            >
               Convert Statements
             </button>
             <p className="text-[#389BBC]">Your All Files Secure And Safe</p>
@@ -343,13 +445,18 @@ const Home = () => {
                 id="email"
                 className="border border-[#389BBC] text-gray-900 text-sm rounded-lg block w-full p-2.5"
                 placeholder="your work email*"
+                onChange={handleInputChange}
+                value={queryForm.email}
                 required
               />
               <textarea
                 id="message"
                 rows="12"
+                name="message"
                 className="block p-2.5 w-full text-sm text-gray-900 rounded-lg border border-[#389BBC]"
                 placeholder="how we can help you?*"
+                onChange={handleInputChange}
+                value={queryForm.message}
               ></textarea>
               <div className="flex gap-5 mx-1 mt-5 w-full justify-start">
                 <button
@@ -364,7 +471,10 @@ const Home = () => {
                     style={{ display: "none" }}
                   />
                 </button>
-                <button className="border border-[#389BBC] rounded-lg bg-[#389BBC] text-white p-2 px-12">
+                <button
+                  className="border border-[#389BBC] rounded-lg bg-[#389BBC] text-white p-2 px-12"
+                  onClick={handleForm}
+                >
                   Send Query
                 </button>
               </div>

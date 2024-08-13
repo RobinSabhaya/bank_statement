@@ -1,10 +1,70 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Password from "../../assets/password.svg";
+import apiRoutes from "../helpers/api.helper";
+import axios from "axios";
 
 const ChangePassword = () => {
   let navigationRoute = useLocation();
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+    confirm_password: "",
+  });
+  const [response, setResponse] = useState(null);
   navigationRoute = navigationRoute.pathname.replace("/", "");
+
+  /**
+   * Handle input
+   * @param {event} e
+   */
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  /**
+   * Submit the form
+   * @param {event} e
+   */
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (navigationRoute == "new-password") {
+      console.log(formData);
+      // const response = await axios
+      //   .post(apiRoutes.NEW_PASSWORD, formData, {
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //       withCredentials: false,
+      //     },
+      //   })
+      //   .catch((err) => {
+      //     console.log(err);
+      //   });
+      // console.log(response.data);
+      // setResponse(response.data);
+    } else {
+      delete formData.confirm_password;
+      delete formData.password;
+      console.log(formData);
+      // const response = await axios
+      //   .post(apiRoutes.RESET_PASSWORD, formData, {
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //       withCredentials: false,
+      //     },
+      //   })
+      //   .catch((err) => {
+      //     console.log(err);
+      //   });
+      // console.log(response.data);
+      // setResponse(response.data);
+    }
+  };
+
   return (
     <>
       <div className="flex justify-center items-center flex-row flex-wrap w-full mt-4">
@@ -36,7 +96,10 @@ const ChangePassword = () => {
                       </h2>
                     </>
                   )}
-                  <form className="space-y-4 md:space-y-6" action="#">
+                  <form
+                    className="space-y-4 md:space-y-6"
+                    onSubmit={handleSubmit}
+                  >
                     <div>
                       <label
                         htmlFor="email"
@@ -50,6 +113,8 @@ const ChangePassword = () => {
                         id="email"
                         className="border border-[#389BBC] text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:placeholder-gray-400 dark:text-white"
                         placeholder="name@company.com"
+                        onChange={handleChange}
+                        value={formData.email}
                         required
                       />
                     </div>
@@ -69,6 +134,8 @@ const ChangePassword = () => {
                             placeholder="••••••••"
                             className="border border-[#389BBC] text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:placeholder-gray-400 dark:text-white "
                             required
+                            onChange={handleChange}
+                            value={formData.password}
                           />
                         </div>
                         <div>
@@ -80,11 +147,13 @@ const ChangePassword = () => {
                           </label>
                           <input
                             type="password"
-                            name="password"
+                            name="confirm_password"
                             id="password"
                             placeholder="••••••••"
                             className="border border-[#389BBC] text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700  dark:placeholder-gray-400 dark:text-white "
                             required
+                            onChange={handleChange}
+                            value={formData.confirm_password}
                           />
                         </div>
                       </>
