@@ -97,30 +97,29 @@ const Form = () => {
               <div className="w-full border rounded-xl border-[#389BBC]">
                 <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
                   <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-                    <ul className="flex flex-wrap text-sm font-medium text-center w-auto bg-[#389BBC] justify-around rounded-xl h-[50px]">
+                    <ul className="flex text-sm font-medium text-center w-auto bg-[#389BBC] justify-around rounded-xl p-[3px] h-auto">
                       <li
-                        className={`me-2 ${active ? "" : "active"}`}
+                        className={`me-3 ${active ? "" : "tab-active"}`}
                         onClick={() => {
                           setActive(false);
                         }}
                       >
                         <a
                           href="#"
-                          className="inline-block px-4 py-3 text-white rounded-lg"
-                          aria-current="page"
+                          className="inline-block px-4 py-3 text-white rounded-lg w-[21vw] lg:w-[14vw]"
                         >
                           Login
                         </a>
                       </li>
                       <li
-                        className={`me-2 ${!active ? "" : "active"}`}
+                        className={`me-2 ${!active ? "" : "tab-active"}`}
                         onClick={() => {
                           setActive(true);
                         }}
                       >
                         <a
                           href="#"
-                          className="inline-block px-4 py-3 text-white rounded-lg"
+                          className="inline-block px-4 py-3 text-white rounded-lg w-[21vw] lg:w-[14vw]"
                         >
                           Register
                         </a>

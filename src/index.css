@@ -1,15 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-.active {
+.tab-active {
   background-color: #98d2e5;
-  width: 160px;
   border-radius: 8px;
   margin-top: 3px;
   margin-bottom: 3px;
   text-align: center;
 }
-
 .li-list::before {
   background-color: #389bbc;
   color: #90e3ff;
@@ -252,4 +250,7 @@ ol li:before {
   transform: rotate(180deg);
 }
 
-.card:hover .btn { background-color: white; color :  #389BBC }
+.card:hover .btn {
+  background-color: white;
+  color: #389bbc;
+}

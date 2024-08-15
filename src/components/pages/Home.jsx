@@ -1,4 +1,5 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import Header from "../common/Header";
 import CircularProgressbar from "../common/CircleProgressBar";
 import Shield from "../../assets/shield.svg";
@@ -14,7 +15,9 @@ import apiRoutes from "../helpers/api.helper";
 import axios from "axios";
 
 const Home = () => {
-  const [file, setFile] = useState(null);
+  const DataContext = React.createContext();
+  const [file, setFile] = useState([]);
+  const [fileName, setFileName] = useState("");
   const [fileType, setFileType] = useState(null);
   const [response, setResponse] = useState(null);
   const [queryForm, setQueryFormData] = useState({
@@ -22,6 +25,7 @@ const Home = () => {
     message: "",
   });
   const hiddenFileInput = useRef(null);
+  const navigate = useNavigate()
 
   // when the Button component is clicked
   const handleClick = (event) => {
@@ -80,16 +84,18 @@ const Home = () => {
    * @param {event} e
    */
   const handleFileChange = (e) => {
-    setFile(e.target.files[0]);
+    setFile(e.target.files);
+    const files = Array.from(e.target.files).map((file) => file.name);
+    setFileName(files);
   };
 
   /**
    * Handle file types
    * @param {event} e
    */
-  const handleFileType = (e) => {
-    setFileType(e.target.value);
-  };
+  // const handleFileType = (e) => {
+  //   setFileType(e.target.value);
+  // };
 
   /**
    * Upload a file
@@ -98,8 +104,9 @@ const Home = () => {
   async function handleFileUpload(e) {
     e.preventDefault();
     const formData = new FormData();
-    formData.append("file", file);
-    formData.append("output", fileType);
+    for (let i = 0; i < file.length; i++) {
+      formData.append("file", file[i]);
+    }
     const response = await axios
       .post(apiRoutes.CONVERT, formData, {
         headers: {
@@ -110,8 +117,9 @@ const Home = () => {
       .catch((err) => {
         console.log(err);
       });
-    console.log(response.data);
-    setResponse(response.data);
+    // console.log(response?.data);
+    setResponse(response?.data);
+    navigate("/file-preview");
   }
 
   /**
@@ -155,6 +163,7 @@ const Home = () => {
 
   return (
     <>
+      <DataContext.Provider value={response}></DataContext.Provider>
       <div className="flex justify-center items-center w-full flex-col">
         <Header />
         <h3 className="text-[#389BBC] font-bold text-[30px] text-center">
@@ -166,13 +175,13 @@ const Home = () => {
         </h5>
       </div>
       <div className="bg-[#DDF2F9] dark:bg-gray-900 top-0 start-0 border-2 border-[#389BBC] rounded-3xl mx-2 md:mx-20 lg:mx-20 mt-3 p-8">
-        <div className="flex justify-center items-start flex-row w-full 2xl:justify-between flex-wrap">
+        <div className="flex justify-center items-start flex-row w-full 2xl:justify-between flex-wrap gap-5">
           <div className="flex justify-center items-center flex-col">
             <label
               htmlFor="dropzone-file"
               className="flex flex-col items-center justify-center h-64  border-dashed  cursor-pointer bg-[#98D2E5]  border-2 border-[#389BBC] rounded-xl w-full mb-8 flex-wrap"
             >
-              <div className="flex flex-col items-center justify-center pt-5 pb-6 flex-wrap">
+              <div className="flex flex-col items-center justify-center pt-5 pb-6 flex-wrap px-10 py-3">
                 <svg
                   className="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400"
                   aria-hidden="true"
@@ -207,27 +216,29 @@ const Home = () => {
               />
             </label>
             <div className="flex justify-center items-center flex-row gap-3 flex-wrap">
-              <button
+              {fileName.length > 0 &&
+                fileName?.map((name, index) => <li key={index}>{name}</li>)}
+              {/* <div
                 className="border border-[#389BBC] rounded-lg text-[#389BBC] px-10 py-3"
-                onClick={handleFileType}
+                // onClick={handleFileType}
                 value={"csv"}
               >
                 CSV
-              </button>
-              <button
+              </div>
+              <div
                 className="border border-[#389BBC] rounded-lg text-[#389BBC] px-10 py-3"
-                onClick={handleFileType}
+                // onClick={handleFileType}
                 value={"excel"}
               >
                 Excel
-              </button>
-              <button
+              </div>
+              <div
                 className="border border-[#389BBC] rounded-lg text-[#389BBC] px-10 py-3"
-                onClick={handleFileType}
+                // onClick={handleFileType}
                 value={"json"}
               >
                 Json
-              </button>
+              </div> */}
             </div>
             <button
               className="border border-[#389BBC] bg-[#389BBC] rounded-lg text-white px-10 py-3 m-5 w-[calc(100%-5%)]"

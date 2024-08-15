@@ -1,93 +1,105 @@
-import React from "react";
+import React, { useState, useContext } from "react";
+const DataContext = React.createContext();
 
 const Test = () => {
+  const result = useContext(DataContext);
+  console.log(result);
+  const [activeTab, setActiveTab] = useState("HDFC");
+  const [downloadFormat, setDownloadFormat] = useState("Excel");
+
+  const tabs = ["HDFC", "Axis", "ICICI", "SBI"];
+
   return (
-    <nav className="bg-white border-gray-200 dark:bg-gray-900">
-      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <a
-          href="https://flowbite.com/"
-          className="flex items-center space-x-3 rtl:space-x-reverse"
-        >
-          <img
-            src="https://flowbite.com/docs/images/logo.svg"
-            className="h-8"
-            alt="Flowbite Logo"
-          />
-          <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-            Flowbite
-          </span>
-        </a>
-        <button
-          data-collapse-toggle="navbar-default"
-          type="button"
-          className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-          aria-controls="navbar-default"
-          aria-expanded="false"
-        >
-          <span className="sr-only">Open main menu</span>
-          <svg
-            className="w-5 h-5"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 17 14"
-          >
-            <path
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M1 1h15M1 7h15M1 13h15"
+    <>
+      <div className="mt-4 px-6 py-4 flex justify-end items-center rounded-b-lg gap-6">
+        <div className="flex space-x-6">
+          <label className="flex items-center text-gray-700">
+            <input
+              type="radio"
+              name="downloadFormat"
+              value="Excel"
+              checked={downloadFormat === "Excel"}
+              onChange={() => setDownloadFormat("Excel")}
+              className="mr-2 focus:ring-blue-500"
             />
-          </svg>
+            Excel
+          </label>
+          <label className="flex items-center text-gray-700">
+            <input
+              type="radio"
+              name="downloadFormat"
+              value="CSV"
+              checked={downloadFormat === "CSV"}
+              onChange={() => setDownloadFormat("CSV")}
+              className="mr-2 focus:ring-blue-500"
+            />
+            CSV
+          </label>
+          <label className="flex items-center text-gray-700">
+            <input
+              type="radio"
+              name="downloadFormat"
+              value="JSON"
+              checked={downloadFormat === "JSON"}
+              onChange={() => setDownloadFormat("JSON")}
+              className="mr-2 focus:ring-blue-500"
+            />
+            JSON
+          </label>
+        </div>
+        <button className="px-6 py-2 bg-blue-600 text-white rounded-md shadow-sm hover:bg-blue-700 transition-colors duration-300">
+          Download All
         </button>
-        <div className="hidden w-full md:block md:w-auto" id="navbar-default">
-          <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-            <li>
-              <a
-                href="#"
-                className="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500"
-                aria-current="page"
+      </div>
+      <div className="h-screen p-6 flex flex-col items-center">
+        <div className="w-full bg-white shadow-lg rounded-lg mx-4 h-auto">
+          {/* Tab Navigation */}
+          <div className="flex justify-between border-b rounded-t-lg overflow-hidden">
+            {tabs.map((tab) => (
+              <button
+                key={tab}
+                className={`px-6 py-3 w-full text-lg font-medium focus:outline-none transition-colors duration-300 ${
+                  activeTab === tab
+                    ? "bg-blue-600 text-white"
+                    : "bg-gray-100 text-gray-800 hover:bg-blue-100"
+                }`}
+                onClick={() => setActiveTab(tab)}
               >
-                Home
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-              >
-                About
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-              >
-                Services
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-              >
-                Pricing
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-              >
-                Contact
-              </a>
-            </li>
-          </ul>
+                {tab}
+              </button>
+            ))}
+          </div>
+          <div className="border-t h-80 flex justify-center items-center bg-gray-50 text-gray-600">
+            <p className="text-xl">Displaying data for {activeTab}</p>
+          </div>
+
+          <div className="text-red-500">{result}</div>
         </div>
       </div>
-    </nav>
+      <div className="flex justify-end items-center flex-row gap-5">
+        <div
+          className="border border-[#389BBC] rounded-lg text-[#389BBC] px-10 py-3"
+          // onClick={handleFileType}
+          value={"csv"}
+        >
+          CSV
+        </div>
+        <div
+          className="border border-[#389BBC] rounded-lg text-[#389BBC] px-10 py-3"
+          // onClick={handleFileType}
+          value={"excel"}
+        >
+          Excel
+        </div>
+        <div
+          className="border border-[#389BBC] rounded-lg text-[#389BBC] px-10 py-3"
+          // onClick={handleFileType}
+          value={"json"}
+        >
+          Json
+        </div>
+      </div>
+    </>
   );
 };
 
