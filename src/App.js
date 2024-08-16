@@ -24,7 +24,7 @@ function App() {
           <Route element={<Table></Table>} path="/user-list" />
         </Routes>
       </BrowserRouter>
-      <Test></Test>
+      {/* <Test></Test> */}
     </>
   );
 }
