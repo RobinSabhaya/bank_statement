@@ -323,7 +323,7 @@ const FilePreview = () => {
                       </p>
                     </div>
                     <div>
-                        <strong>Total Deposit:</strong>
+                      <strong>Total Deposit:</strong>
                       <p>
                         {statement[
                           activeTab
