@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import Logo from "../../assets/logo.svg";
 import { NavLink } from "react-router-dom";
 
 const Header = () => {
+  const [isNavOpen, setIsNavOpen] = useState(false);
+
   /**
    * Scroll to specified position
    * @param {id} id
@@ -24,7 +26,7 @@ const Header = () => {
       >
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
           <a
-            href="#"
+            href="/"
             className="flex items-center space-x-3 rtl:space-x-reverse"
           >
             <img src={Logo} className="h-8" alt="Bank statement Logo" />
@@ -37,7 +39,8 @@ const Header = () => {
             type="button"
             className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
             aria-controls="navbar-sticky"
-            aria-expanded="false"
+            aria-expanded={isNavOpen}
+            onClick={() => setIsNavOpen(!isNavOpen)}
           >
             <span className="sr-only">Open main menu</span>
             <svg
@@ -57,7 +60,9 @@ const Header = () => {
             </svg>
           </button>
           <div
-            className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
+            className={`${
+              isNavOpen ? "block" : "hidden"
+            } items-center justify-between w-full md:flex md:w-auto md:order-1`}
             id="navbar-sticky"
           >
             <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 gap-3">

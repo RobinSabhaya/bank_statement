@@ -13,27 +13,34 @@ import Slider from "react-slick";
 import { images } from "../helpers/constant.helper";
 import apiRoutes from "../helpers/api.helper";
 import axios from "axios";
+import Footer from "../common/Footer";
 
 const Home = () => {
-  const DataContext = React.createContext();
   const [file, setFile] = useState([]);
   const [fileName, setFileName] = useState("");
-  const [fileType, setFileType] = useState(null);
-  const [response, setResponse] = useState(null);
+  const [queryFileName, setQueryFileName] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [response, setResponse] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [queryForm, setQueryFormData] = useState({
     email: "",
     message: "",
   });
   const hiddenFileInput = useRef(null);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   // when the Button component is clicked
   const handleClick = (event) => {
     hiddenFileInput.current.click();
   };
-  const handleChange = (event) => {
-    const file = event.target.files[0];
+  const handleChange = (e) => {
+    const file = e.target.files[0];
+    if (!file) {
+      setErrorMessage("Please select at least 1 file!");
+    }
     setFile(file);
+    const files = Array.from(e.target.files).map((file) => file.name);
+    setQueryFileName(files);
   };
   const settings = {
     infinite: true,
@@ -90,20 +97,16 @@ const Home = () => {
   };
 
   /**
-   * Handle file types
-   * @param {event} e
-   */
-  // const handleFileType = (e) => {
-  //   setFileType(e.target.value);
-  // };
-
-  /**
    * Upload a file
    * @param {event} e
    */
   async function handleFileUpload(e) {
+    setLoading(true);
     e.preventDefault();
     const formData = new FormData();
+    if (!file.length) {
+      setErrorMessage("Please select at least 1 file!");
+    }
     for (let i = 0; i < file.length; i++) {
       formData.append("file", file[i]);
     }
@@ -115,11 +118,17 @@ const Home = () => {
         },
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
-    // console.log(response?.data);
-    setResponse(response?.data);
-    navigate("/file-preview");
+    if (response?.status == 200) {
+      setResponse(response?.data);
+      setLoading(false);
+      navigate("/file-preview", {
+        state: { data: JSON.stringify(response?.data) },
+      });
+    } else {
+      setLoading(false);
+    }
   }
 
   /**
@@ -144,6 +153,9 @@ const Home = () => {
     formData.append("file", file);
     formData.append("email", queryForm.email);
     formData.append("message", queryForm.message);
+    if (!file.length) {
+      setErrorMessage("Please select at least 1 file!");
+    }
     for (const pair of formData.entries()) {
       console.log(pair[0], pair[1]);
     }
@@ -163,7 +175,6 @@ const Home = () => {
 
   return (
     <>
-      <DataContext.Provider value={response}></DataContext.Provider>
       <div className="flex justify-center items-center w-full flex-col">
         <Header />
         <h3 className="text-[#389BBC] font-bold text-[30px] text-center">
@@ -174,7 +185,7 @@ const Home = () => {
           statements into structured data formats like Excel, CSV, or JSON.
         </h5>
       </div>
-      <div className="bg-[#DDF2F9] dark:bg-gray-900 top-0 start-0 border-2 border-[#389BBC] rounded-3xl mx-2 md:mx-20 lg:mx-20 mt-3 p-8">
+      <div className="bg-[#DDF2F9] dark:bg-gray-900 top-0 start-0 border-2 border-[#389BBC] rounded-3xl mx-2 md:mx-20 lg:mx-20 mt-3 p-8 max-[540px]:m-auto max-[540px]:mx-6 ">
         <div className="flex justify-center items-start flex-row w-full 2xl:justify-between flex-wrap gap-5">
           <div className="flex justify-center items-center flex-col">
             <label
@@ -215,36 +226,18 @@ const Home = () => {
                 onChange={handleFileChange}
               />
             </label>
-            <div className="flex justify-center items-center flex-row gap-3 flex-wrap">
+            <div className="flex justify-center items-center flex-col gap-3 flex-wrap">
+              {errorMessage && (
+                <span className="text-red-500">{errorMessage}</span>
+              )}
               {fileName.length > 0 &&
-                fileName?.map((name, index) => <li key={index}>{name}</li>)}
-              {/* <div
-                className="border border-[#389BBC] rounded-lg text-[#389BBC] px-10 py-3"
-                // onClick={handleFileType}
-                value={"csv"}
-              >
-                CSV
-              </div>
-              <div
-                className="border border-[#389BBC] rounded-lg text-[#389BBC] px-10 py-3"
-                // onClick={handleFileType}
-                value={"excel"}
-              >
-                Excel
-              </div>
-              <div
-                className="border border-[#389BBC] rounded-lg text-[#389BBC] px-10 py-3"
-                // onClick={handleFileType}
-                value={"json"}
-              >
-                Json
-              </div> */}
+                fileName?.map((name, index) => <p key={index}>{name}</p>)}
             </div>
             <button
               className="border border-[#389BBC] bg-[#389BBC] rounded-lg text-white px-10 py-3 m-5 w-[calc(100%-5%)]"
               onClick={handleFileUpload}
             >
-              Convert Statements
+              {loading ? "Loading..." : "Convert Statements"}
             </button>
             <p className="text-[#389BBC]">Your All Files Secure And Safe</p>
           </div>
@@ -445,11 +438,11 @@ const Home = () => {
           <h1 className="text-center text-[#389BBC] text-3xl font-extrabold m-2">
             Have More Questions?
           </h1>
-          <h1 className="text-left text-[#389BBC] text-3xl font-extrabold mx-8 my-4">
-            Send In A Query
-          </h1>
           <div className="grid grid-cols-1 mx-8 lg:grid-cols-2 my-3">
             <div className="flex justify-start items-center flex-col gap-y-5">
+              <h1 className="text-[#389BBC] text-3xl font-extrabold mx-8 my-4 flex justify-start items-center flex-row w-full ">
+                Send In A Query
+              </h1>
               <input
                 type="email"
                 name="email"
@@ -469,7 +462,13 @@ const Home = () => {
                 onChange={handleInputChange}
                 value={queryForm.message}
               ></textarea>
-              <div className="flex gap-5 mx-1 mt-5 w-full justify-start">
+              <div className="flex justify-start items-start flex-wrap flex-col w-full">
+                {queryFileName?.length > 0 &&
+                  queryFileName?.map((name, index) => (
+                    <p key={index}>{name}</p>
+                  ))}
+              </div>
+              <div className="flex gap-5 mx-1 mt-5 w-full justify-start flex-wrap">
                 <button
                   className="border border-[#389BBC] rounded-lg bg-[#389BBC] text-white p-2 px-12"
                   onClick={handleClick}
@@ -493,15 +492,12 @@ const Home = () => {
             <img
               src={getInTouch}
               alt="Email"
-              className="sm:row-start-1 sm:row-end-1 md:row-start-1 md:row-end-1 lg:row-span-1 2xl:row-span-1"
+              className="max-[640px]:row-start-1 max-[640px]:row-end-1 sm:row-start-1 sm:row-end-1 md:row-start-1 md:row-end-1 lg:row-span-1 2xl:row-span-1"
             />
           </div>
         </div>
       </section>
-      <hr className="h-px mt-2 bg-[#389BBC] border-0 w-full" />
-      <section className="text-center text-[#389BBC] m-3">
-        Copyright © 2024 Bank Statement Ltd.
-      </section>
+      <Footer></Footer>
     </>
   );
 };

@@ -1,11 +1,12 @@
 import React from "react";
 import Header from "./Header";
 import CircularProgressbar from "../common/CircleProgressBar";
+import Footer from "./Footer";
 const Table = () => {
   return (
     <>
       <Header></Header>
-      <div className="mt-32 flex justify-center items-center flex-row">
+      <div className="mt-20 flex justify-center items-center flex-row">
         <div className="flex justify-start items-center mb-10 gap-3">
           <div className="w-[30vw] h-[25vh] md:w-[20vw]">
             <CircularProgressbar percentage={100}></CircularProgressbar>
@@ -111,10 +112,7 @@ const Table = () => {
           </tbody>
         </table>
       </div>
-      <hr className="h-px mt-5 bg-[#389BBC] border-0 w-full" />
-      <section className="text-center text-[#389BBC] m-3">
-        Copyright © 2024 Bank Statement Ltd.
-      </section>
+      <Footer></Footer>
     </>
   );
 };
