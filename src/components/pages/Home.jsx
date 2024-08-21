@@ -29,6 +29,26 @@ const Home = () => {
   const hiddenFileInput = useRef(null);
   const navigate = useNavigate();
 
+  //use these functions on drag events
+  // const [isDragActive, setIsDragActive] = useState(false);
+
+  // const handleDragEnter = () => {
+  //   setIsDragActive(true);
+  // };
+
+  // const handleDragLeave = () => {
+  //   setIsDragActive(false);
+  // };
+
+  // const handleDrop = (e) => {
+  //   e.preventDefault();
+  //   setIsDragActive(false);
+  //   const file = Array.from(e.dataTransfer.files);
+  //   setFile(file);
+  //   const files = Array.from(e.dataTransfer.files).map((file) => file.name);
+  //   setFileName(files);
+  // };
+
   // when the Button component is clicked
   const handleClick = (event) => {
     hiddenFileInput.current.click();
@@ -224,6 +244,10 @@ const Home = () => {
                 max={5}
                 multiple
                 onChange={handleFileChange}
+                // onDragEnter={handleDragEnter}
+                // onDragLeave={handleDragLeave}
+                // onDragOver={(e) => e.preventDefault()}
+                // onDrop={handleDrop}
               />
             </label>
             <div className="flex justify-center items-center flex-col gap-3 flex-wrap">
@@ -431,7 +455,7 @@ const Home = () => {
         </div>
       </section>
       <section className="flex justify-center items-center flex-row mb-20">
-        <div className="border border-[#389BBC] max-w-[1436px] rounded-xl p-3">
+        <div className="border border-[#389BBC] max-w-[1436px] rounded-xl p-3 mx-6 lg:mx-20 max-[540px]:mx-6">
           <h5 className="text-center text-[#389BBC] text-xl m-2">
             GET IN TOUCH
           </h5>

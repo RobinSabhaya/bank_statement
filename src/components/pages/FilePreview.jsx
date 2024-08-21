@@ -89,7 +89,7 @@ const FilePreview = () => {
       <div className="flex justify-center items-center w-full flex-col">
         <Header></Header>
       </div>
-      <div className="border-2 border-[#389BBC] max-w-[1436px] rounded-2xl mt-5 h-auto mx-2 md:mx-20 lg:mx-20">
+      <div className="border-2 border-[#389BBC] max-w-[1436px] rounded-2xl mt-5 h-auto mx-10 lg:mx-20 max-[540px]:mx-6">
         <div className="mt-4 px-6 py-4 flex md:justify-end md:flex-row items-center rounded-b-lg gap-6 flex-wrap justify-center flex-col">
           <div className="flex space-x-6">
             <label className="flex items-center text-[#389BBC] font-semibold">
@@ -242,7 +242,7 @@ const FilePreview = () => {
                       </p>
                     </div>
                   </div> */}
-                  <div className="grid grid-cols-4 gap-4 text-sm">
+                  <div className="grid grid-cols-4 gap-4 xl:gap-x-28 text-sm max-[543px]:grid-cols-2">
                     <div>
                       <h2>
                         <strong>Bank</strong> :{" "}
