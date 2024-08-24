@@ -1,0 +1,7 @@
+[[redirects]]
+  from = "/api/v1/bsc/convert"
+  to = "http://64.227.141.56:8080/api/v1/bsc/convert"
+  status = 200
+  force = true
+  headers = {X-From = "Netlify"}
+  signed = "API_SIGNATURE_TOKEN"
