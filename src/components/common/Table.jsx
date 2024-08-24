@@ -5,30 +5,32 @@ import Footer from "./Footer";
 const Table = () => {
   return (
     <>
-      <Header></Header>
-      <div className="mt-20 flex justify-center items-center flex-row">
-        <div className="flex justify-start items-center mb-10 gap-3">
-          <div className="w-[30vw] h-[25vh] md:w-[20vw]">
+      <div className="flex justify-center items-center w-full flex-col">
+        <Header></Header>
+      </div>
+      <div className="flex justify-center items-center">
+        <div className="flex sm:justify-start mt-5 sm:flex-nowrap items-center mb-10 sm:gap-5 gap-20 flex-row flex-wrap justify-center">
+          <div className="h-[23vh] sm:w-[20vw] w-full">
             <CircularProgressbar percentage={100}></CircularProgressbar>
             <p className="text-center text-[#389BBC] font-bold my-5">
               Total User
             </p>
           </div>
-          <div className="w-[30vw] h-[25vh] md:w-[20vw]">
+          <div className="w-full h-[23vh] sm:w-[20vw]">
             <CircularProgressbar percentage={25}></CircularProgressbar>
             <p className="text-center text-[#389BBC] font-bold my-5">
               Essentials
             </p>
           </div>
-          <div className="w-[30vw] h-[25vh] md:w-[20vw]">
+          <div className="w-full h-[23vh] sm:w-[20vw]">
             <CircularProgressbar percentage={50}></CircularProgressbar>
             <p className="text-center text-[#389BBC] font-bold  my-5">
               Bussiness
             </p>
           </div>
-          <div className="w-[30vw] h-[25vh] md:w-[20vw]">
+          <div className="w-full h-[23vh] sm:w-[20vw]">
             <CircularProgressbar percentage={25}></CircularProgressbar>
-            <p className="text-center text-[#389BBC] font-bold  my-5">
+            <p className="text-center text-[#389BBC] font-bold my-5">
               Advanced
             </p>
           </div>
