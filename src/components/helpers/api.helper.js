@@ -1,6 +1,5 @@
 const REACT_APP_API_URL = process.env.REACT_APP_API_URL;
 
-console.log(REACT_APP_API_URL);
 const apiRoutes = {
   LOGIN: "/login",
   REGISTER: "/register",
