@@ -206,7 +206,7 @@ const Home = () => {
           statements into structured data formats like Excel, CSV, or JSON.
         </h5>
       </div>
-      <div className="bg-[#DDF2F9] dark:bg-gray-900 top-0 start-0 border-2 border-[#389BBC] rounded-3xl mx-2 md:mx-20 lg:mx-20 mt-3 p-8 max-[540px]:m-auto max-[540px]:mx-6 ">
+      <div className="bg-[#DDF2F9] dark:bg-gray-900 top-0 start-0 border-2 border-[#389BBC] rounded-3xl md:mx-20 lg:mx-20 mt-3 p-8 max-[540px]:m-auto max-w-[1436px] mx-6">
         <div className="flex justify-center items-start flex-row w-full 2xl:justify-between flex-wrap gap-5">
           <div className="flex justify-center items-center flex-col">
             <label
@@ -333,7 +333,7 @@ const Home = () => {
       </div>
       {/* React slick logo slider */}
       <div className="flex flex-col gap-4">
-        <Slider className="slider-container w-[98%] ltr" {...settings}>
+        <Slider className="slider-container w-[98%]" {...settings}>
           {images.map((ele, i) => {
             return (
               <>
@@ -361,7 +361,7 @@ const Home = () => {
             );
           })}
         </Slider>
-        <Slider className="slider-container w-[98%] ltr" {...settings}>
+        <Slider className="slider-container w-[98%]" {...settings}>
           {images.map((ele, i) => {
             return (
               <>
