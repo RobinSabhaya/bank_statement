@@ -29,25 +29,26 @@ const Home = () => {
   const hiddenFileInput = useRef(null);
   const navigate = useNavigate();
 
-  //use these functions on drag events
-  // const [isDragActive, setIsDragActive] = useState(false);
+  /**
+   * Handle the drag enter
+   * @param {event} e
+   */
+  const handleDragEnter = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+  };
 
-  // const handleDragEnter = () => {
-  //   setIsDragActive(true);
-  // };
-
-  // const handleDragLeave = () => {
-  //   setIsDragActive(false);
-  // };
-
-  // const handleDrop = (e) => {
-  //   e.preventDefault();
-  //   setIsDragActive(false);
-  //   const file = Array.from(e.dataTransfer.files);
-  //   setFile(file);
-  //   const files = Array.from(e.dataTransfer.files).map((file) => file.name);
-  //   setFileName(files);
-  // };
+  /**
+   * Handle the drag and drop
+   * @param {event} e
+   */
+  const handleDrop = (e) => {
+    e.preventDefault();
+    const file = Array.from(e.dataTransfer.files);
+    setFile(file);
+    const files = Array.from(e.dataTransfer.files).map((file) => file.name);
+    setFileName(files);
+  };
 
   // when the Button component is clicked
   const handleClick = (event) => {
@@ -211,6 +212,9 @@ const Home = () => {
             <label
               htmlFor="dropzone-file"
               className="flex flex-col items-center justify-center h-64  border-dashed  cursor-pointer bg-[#98D2E5]  border-2 border-[#389BBC] rounded-xl w-full mb-8 flex-wrap"
+              onDragEnter={handleDragEnter}
+              onDragOver={(e) => e.preventDefault()}
+              onDrop={handleDrop}
             >
               <div className="flex flex-col items-center justify-center pt-5 pb-6 flex-wrap px-10 py-3">
                 <svg
@@ -244,10 +248,6 @@ const Home = () => {
                 max={5}
                 multiple
                 onChange={handleFileChange}
-                // onDragEnter={handleDragEnter}
-                // onDragLeave={handleDragLeave}
-                // onDragOver={(e) => e.preventDefault()}
-                // onDrop={handleDrop}
               />
             </label>
             <div className="flex justify-center items-center flex-col gap-3 flex-wrap">
