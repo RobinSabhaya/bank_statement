@@ -202,7 +202,7 @@ const FilePreview = () => {
                         }
                       </p>
                       <p>
-                        <strong>Statement Date:</strong> {""}
+                        <strong>Statement Date:</strong> 
                         {statement[activeTab]?.bankStatement?.toDate || "-"}
                       </p>
                       <p>
@@ -245,60 +245,48 @@ const FilePreview = () => {
                   <div className="grid grid-cols-4 gap-4 xl:gap-x-28 text-sm max-[543px]:grid-cols-2">
                     <div>
                       <h2>
-                        <strong>Bank</strong> :{" "}
+                        <strong>Bank :</strong> <br />
                         {statement[activeTab]?.bankStatement?.bankName || "-"}
                       </h2>
                     </div>
                     <div>
                       <p className="break-words">
-                        <strong>Bank Address :</strong>{" "}
+                        <strong>Bank Address :</strong> <br />
                         {statement[activeTab]?.bankStatement?.bankAddress ||
                           "-"}
                       </p>
                     </div>
                     <div>
-                      <strong>IFSC Code:</strong>{" "}
+                      <strong>IFSC Code :</strong> <br />
                       {statement[activeTab]?.bankStatement?.ifscCode || "-"}
                     </div>
                     <div>
-                      <strong>Customer Id:</strong>{" "}
+                      <strong>Customer Id :</strong> <br />
                       {statement[activeTab]?.bankStatement?.customerId || "-"}
                     </div>
                     <div>
-                      <strong>Account Number:</strong>{" "}
+                      <strong>Account Number :</strong> <br />
                       {statement[activeTab]?.bankStatement?.accountNumber ||
                         "-"}
                     </div>
                     <div>
-                      <strong>Account Holder :</strong>{" "}
+                      <strong>Account Holder :</strong> <br />
                       <p>
                         {statement[activeTab]?.bankStatement
                           ?.accountHolderName || "-"}
                       </p>
                     </div>
                     <div>
-                      <strong>Account Holder Address :</strong>{" "}
-                      {
-                        statement[activeTab]?.bankStatement
-                          ?.accountHolderAddress || "-"
-
-                        // statement[activeTab]?.bankStatement
-                        //   ?.accountHolderAddress.split("").length > 50
-                        //   ? statement[
-                        //       activeTab
-                        //     ]?.bankStatement?.accountHolderAddress
-                        //       .slice(0, 10)
-                        //       .join(" ") + "..."
-                        //   : statement[activeTab]?.bankStatement
-                        //   ?.accountHolderAddress
-                      }
+                      <strong>Account Holder Address :</strong> <br />
+                      {statement[activeTab]?.bankStatement
+                        ?.accountHolderAddress || "-"}
                     </div>
                     <div>
-                      <strong>Statement Date:</strong> {""}
+                      <strong>Statement Date :</strong> <br />
                       {statement[activeTab]?.bankStatement?.toDate || "-"}
                     </div>
                     <div>
-                      <strong>Opening Balance:</strong>
+                      <strong>Opening Balance :</strong> <br />
                       <p>
                         {statement[
                           activeTab
@@ -306,7 +294,7 @@ const FilePreview = () => {
                       </p>
                     </div>
                     <div>
-                      <strong>Closing Balance:</strong>
+                      <strong>Closing Balance :</strong> <br />
                       <p>
                         {statement[
                           activeTab
@@ -314,7 +302,7 @@ const FilePreview = () => {
                       </p>
                     </div>
                     <div>
-                      <strong>Total Withdrawal:</strong>
+                      <strong>Total Withdrawal :</strong> <br />
                       <p>
                         {statement[
                           activeTab
@@ -323,7 +311,7 @@ const FilePreview = () => {
                       </p>
                     </div>
                     <div>
-                      <strong>Total Deposit:</strong>
+                      <strong>Total Deposit :</strong> <br />
                       <p>
                         {statement[
                           activeTab
@@ -331,14 +319,14 @@ const FilePreview = () => {
                       </p>
                     </div>
                     <div>
-                      <strong>Withdrawal Count:</strong>
+                      <strong>Withdrawal Count :</strong> <br />
                       <p>
                         {statement[activeTab]?.bankStatement?.withdrawalCount ||
                           "-"}
                       </p>
                     </div>
                     <div>
-                      <strong>Deposit Count:</strong>
+                      <strong>Deposit Count :</strong> <br />
                       <p>
                         {statement[activeTab]?.bankStatement?.depositCount ||
                           "-"}
@@ -349,7 +337,7 @@ const FilePreview = () => {
                 <div className="relative overflow-x-auto max-h-96">
                   <table className="relative sm:rounded-lg w-full">
                     <thead>
-                      <tr>
+                      <tr className="top-0 sticky bg-white">
                         <th className="py-2">No.</th>
                         <th className="py-2">Date</th>
                         <th className="py-2">Description</th>
@@ -434,151 +422,6 @@ const FilePreview = () => {
       <Footer></Footer>
     </>
   );
-
-  // return (
-  //   <>
-  //     <Header></Header>
-  //     <div className="max-w-6xl mx-auto p-6">
-  //       <div className="border border-gray-300 p-4 mb-4">
-  //         <h2 className="text-xl font-bold mb-2">Bank Statement</h2>
-  //         <div className="grid grid-cols-4 gap-4 text-sm">
-  //           <div>
-  //             <strong>Bank:</strong>
-  //             <p>HDFC BANK LIMITED</p>
-  //           </div>
-  //           <div>
-  //             <strong>Bank Address:</strong>
-  //             <p>SARTHANA CHOKDI BRANCH</p>
-  //           </div>
-  //           <div>
-  //             <strong>IFSC Code:</strong>
-  //             <p>HDFC0004693</p>
-  //           </div>
-  //           <div>
-  //             <strong>Customer ID:</strong>
-  //             <p>127869432</p>
-  //           </div>
-  //           <div>
-  //             <strong>Account Number:</strong>
-  //             <p>50100269430001</p>
-  //           </div>
-  //           <div>
-  //             <strong>Account Type:</strong>
-  //             <p>SAVINGS</p>
-  //           </div>
-  //           <div>
-  //             <strong>Account Holder:</strong>
-  //             <p>MR LATHIYA SANKET</p>
-  //           </div>
-  //           <div>
-  //             <strong>Address:</strong>
-  //             <p>
-  //               J-303 NAVKAR RESIDENCY KAMREJ NAVAGAM, SURAT 394185 GUJARAT
-  //               INDIA
-  //             </p>
-  //           </div>
-  //           <div className="col-span-4 mt-4">
-  //             <strong>Statement Date:</strong>
-  //             <p>From 01-Nov-2023 To 30-Apr-2024</p>
-  //           </div>
-  //           <div>
-  //             <strong>Opening Balance:</strong>
-  //             <p>₹31,096.14</p>
-  //           </div>
-  //           <div>
-  //             <strong>Closing Balance:</strong>
-  //             <p>₹10,097.44</p>
-  //           </div>
-  //           <div>
-  //             <strong>Total Withdrawal:</strong>
-  //             <p>₹3,42,765.70</p>
-  //           </div>
-  //           <div>
-  //             <strong>Total Deposit:</strong>
-  //             <p>₹3,21,767.00</p>
-  //           </div>
-  //         </div>
-  //       </div>
-  //     </div>
-  //   </>
-  // );
 };
 
 export default FilePreview;
-
-// import React, { useState, useEffect } from "react";
-
-// const Test = ({ value }) => {
-//   return (
-//     <>
-//       {console.log(statement)} {/* Keep this to debug and check the state */}
-//       <div className="p-4 max-w-5xl mx-auto bg-white shadow-md">
-//         <div className="flex justify-between border-b pb-4 mb-4">
-//           <div>
-//             <h2 className="font-bold text-lg">{statement?.bankName}</h2>
-//             <p>{statement?.bankAddress}</p>
-//             <p>IFSC Code: {statement?.ifscCode}</p>
-//             <p>Customer Id: {statement?.customerId}</p>
-//             <p>Account Number: {statement?.accountNumber}</p>
-//           </div>
-//           <div>
-//             <h2 className="font-bold text-lg">
-//               {statement?.accountHolderName}
-//             </h2>
-//             <p>{statement?.accountHolderAddress}</p>
-//             <p>Statement Date: {statement?.toDate}</p>
-//             <p>Opening Balance: {statement?.openingBalance?.toFixed(2)}</p>
-//             <p>Closing Balance: {statement?.closingBalance?.toFixed(2)}</p>
-//             <p>
-//               Total Withdrawal: {statement?.totalWithdrawalAmount?.toFixed(2)}
-//             </p>
-//             <p>Total Deposit: {statement?.totalDepositAmount?.toFixed(2)}</p>
-//             <p>Withdrawal Count: {statement?.withdrawalCount}</p>
-//             <p>Deposit Count: {statement?.depositCount}</p>
-//           </div>
-//         </div>
-
-//         <table className="min-w-full bg-white">
-//           <thead>
-//             <tr>
-//               <th className="py-2">No.</th>
-//               <th className="py-2">Date</th>
-//               <th className="py-2">Description</th>
-//               <th className="py-2">Reference</th>
-//               <th className="py-2">Debit</th>
-//               <th className="py-2">Credit</th>
-//               <th className="py-2">Closing Amount</th>
-//             </tr>
-//           </thead>
-//           <tbody>
-//             {/* Uncomment and use this once the issue is resolved */}
-//             {/* {statement?.transactions?.length > 0 &&
-//             statement.transactions.map((transaction, index) => (
-//               <tr key={transaction?.id} className="border-t">
-//                 <td className="py-2">{index + 1}</td>
-//                 <td className="py-2">{transaction?.transactionDate}</td>
-//                 <td className="py-2">{transaction?.description}</td>
-//                 <td className="py-2">{transaction?.referenceNumber}</td>
-//                 <td className="py-2">
-//                   {transaction?.withdrawalAmount
-//                     ? transaction.withdrawalAmount.toFixed(2)
-//                     : "-"}
-//                 </td>
-//                 <td className="py-2">
-//                   {transaction?.depositAmount
-//                     ? transaction.depositAmount.toFixed(2)
-//                     : "-"}
-//                 </td>
-//                 <td className="py-2">
-//                   {transaction?.closingAmount?.toFixed(2)}
-//                 </td>
-//               </tr>
-//             ))} */}
-//           </tbody>
-//         </table>
-//       </div>
-//     </>
-//   );
-// };
-
-// export default Test;
